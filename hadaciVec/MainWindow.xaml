@@ -5,14 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hadaciVec"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="❤HELLO KITTY❤" Height="450" Width="450">
     <Grid>
+        <Image Source="https://cdn.myshoptet.com/usr/www.sladke-potreby.cz/user/shop/big/222662_hello-kitty-hlavaa.png"></Image>
         <Label 
             x:Name="MathProblem"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            Padding="60"
-            FontSize="30"
+            Padding="45"
+            Foreground="WhiteSmoke"
+            FontSize="35"
+            FontWeight="Black"
+            FontFamily="Comic Sans MS"
             Content="1 + 1 = ?"
         />
         <Button 
@@ -22,6 +26,11 @@
             Margin="-300, 0, 0, 0"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
+            FontFamily="Comic Sans MS"
+            Foreground="WhiteSmoke"
+            Background="HotPink"
+            BorderBrush="WhiteSmoke"
+            BorderThickness="3"
             Content="1"
             Click="CheckOption"    
         />
@@ -32,6 +41,11 @@
             Margin="0"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
+            FontFamily="Comic Sans MS"
+            Foreground="WhiteSmoke"
+            Background="HotPink"
+            BorderBrush="WhiteSmoke"
+            BorderThickness="3"
             Content="2"
             Click="CheckOption"
         />
@@ -42,16 +56,24 @@
             Margin="300,0, 0, 0"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
+            FontFamily="Comic Sans MS"
+            Foreground="WhiteSmoke"
+            Background="HotPink"
+            BorderBrush="WhiteSmoke"
+            BorderThickness="3"
             Content="3"
             Click="CheckOption"
         />
-        <!-- <TextBlock -->
-        <!--     x:Name="MessageBox" -->
-        <!--     HorizontalAlignment="Center" -->
-        <!--     VerticalAlignment="Bottom" -->
-        <!--     Padding="50" -->
-        <!--     FontSize="20" -->
-        <!--     Text="Message" -->
-        <!-- ></TextBlock> -->
+        <TextBlock
+            x:Name="ScoreBox"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            Padding="40"
+            FontSize="25"
+            FontWeight="Bold"
+            FontFamily="Comic Sans MS"
+            Foreground="WhiteSmoke"
+            Text="Your score: 0"
+        ></TextBlock>
     </Grid>
 </Window>

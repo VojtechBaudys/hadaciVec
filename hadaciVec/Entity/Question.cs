@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace hadaciVec.Entity;
 
 public class Question
 {
 	private int[] _numbers;
-	private List<int> _options = new List<int>();
+	private List<int> _options;
 	private char _operator;
 	private int _result;
 	private Random _random = new Random();
@@ -89,8 +90,13 @@ public class Question
 	{
 		return _numbers[0].ToString() + " " + _operator.ToString() + " " + _numbers[1].ToString();
 	}
+
+	public bool CheckAnswere(int answere)
+	{
+		return answere == _result ? true : false;
+	}
 	
-	public void Shuffle<T>(List<T> list)  
+	public void Shuffle<T>(List<T> list)
 	{  
 		int n = list.Count;  
 		while (n > 1) {  
@@ -105,5 +111,17 @@ public class Question
 	public List<int> GetOptions()
 	{
 		return _options;
+	}
+
+	public string GetStringJsonData()
+	{
+		Dictionary<string, object> data = new Dictionary<string, dynamic>();
+
+		data.Add("numbers", _numbers);
+		data.Add("options", _options);
+		data.Add("operator", _operator);
+		data.Add("result", _result);
+
+		return JsonConvert.SerializeObject(data);
 	}
 }
