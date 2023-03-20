@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using hadaciVec.Entity;
 
 namespace hadaciVec
 {
@@ -20,15 +9,23 @@ namespace hadaciVec
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		Question _question = new Question();
+		
 		public MainWindow()
 		{
 			InitializeComponent();
+			
+			MathProblem.Content = _question.GetEquation();
+
+			List<int> options = _question.GetOptions();
+			LeftButton.Content = options[0];
+			MiddleButton.Content = options[1];
+			RightButton.Content = options[2];
 		}
 
-		void LeftButton_OnClick(object sender, RoutedEventArgs e)
+		void CheckOption(object sender, RoutedEventArgs e)
 		{
-			Console.WriteLine("asdf test");
-			throw new NotImplementedException();
+			
 		}
 	}
 }
