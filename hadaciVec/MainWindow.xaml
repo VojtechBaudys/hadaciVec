@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hadaciVec"
         mc:Ignorable="d"
-        Title="❤HELLO KITTY❤" Height="450" Width="450">
+        Title="❤HELLO KITTY❤" Height="450" Width="450"
+        Closing="MainWindow_OnClosing"
+        Icon="https://freepngimg.com/download/barbie/34265-3-barbie-logo-transparent-image.png">
     <Grid>
         <Image Source="https://cdn.myshoptet.com/usr/www.sladke-potreby.cz/user/shop/big/222662_hello-kitty-hlavaa.png"></Image>
         <Label 

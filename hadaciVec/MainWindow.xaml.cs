@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Threading;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -15,42 +13,57 @@ namespace hadaciVec
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		private Question _question;
-		private SaveManger _saveManger = new SaveManger();
-		private int _score = 0;
+		private Question _question; // Math problem class
+		private SaveManger _saveManger = new SaveManger(); // Save & Load class
+		private dynamic _save; // loaded save data
+		private int _score = 0; // score
+		
 		public MainWindow()
 		{
-			InitializeComponent();
-			GenerateLevel();
-			_question.SetData(_saveManger.LoadData());
+			InitializeComponent(); // init
+			_save = _saveManger.LoadData(); // load save.json
+			GenerateLevel(); // generate new level
 		}
 
+		// button OnClick Event
 		private void CheckOption(object sender, RoutedEventArgs e)
 		{
-			Button element = (Button)sender;
+			Button element = (Button)sender; // set element as button instance
 			
-			int answere = (int)element.Content;
-			if (_question.CheckAnswere(answere))
+			int answere = (int)element.Content; // get button content (answere)
+			if (_question.CheckAnswere(answere)) // check if answere is correct
 			{
-				_score++;
+				// correct answere
+				_score++; // add score point +1
 				element.Background = Brushes.ForestGreen;
-				GenerateLevel();
+				GenerateLevel(); // reset level (create new math problem)
 			}
 			else
 			{
+				// incorrect answere
 				element.Background = Brushes.Crimson;
 				ScoreBox.Text = "WRONG ANSWERE";
 				
-				_score = 0;
-				GenerateLevel();
+				_score = 0; // reset score
+				GenerateLevel(); // reset level (create new math problem)
 			}
-
-			_saveManger.SaveStats(_question.GetStringJsonData());
 		}
 
+		// main level method
 		private void GenerateLevel()
 		{
-			_question = new Question();
+			_question = new Question(); // new Question
+			
+			// load save
+			if (_save != null)
+			{
+				if (_save.ToString() != "{}")
+				{
+					_question.SetData(_save); // set Question data
+					_score = (int)_save["score"]; // set score
+					_save = null!;	
+				}
+			}
 			
 			// default
 			SetColors();
@@ -77,6 +90,12 @@ namespace hadaciVec
 			
 			// ScoreBox
 			ScoreBox.Foreground = Brushes.WhiteSmoke;
+		}
+
+		// save current level
+		void MainWindow_OnClosing(object? sender, CancelEventArgs e)
+		{
+			_saveManger.SaveStats(_question.GetStringJsonData(_score)); // save Question and _score TO save.json
 		}
 	}
 }

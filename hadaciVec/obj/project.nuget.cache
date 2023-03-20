@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "8uRnrZbT5ac9NpTu8x0OZqjbZdrlHDEVqcmTNOj919SH8L/M7cgntbnCWbiXVXofRSd3OV4DPwb6U8ALQQzjVA==",
+  "dgSpecHash": "6SReG9uaGgiZT1W9BMC7EBiuwJlVbtCBAM1L/Qrx8DreIOSQg+U3hPFW6z3eqvXTzqyVErocuxEOOE+2WQRuZA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\baudyvo20\\RiderProjects\\hadaciVec\\hadaciVec\\hadaciVec.csproj",
+  "projectFilePath": "C:\\Users\\vojta\\RiderProjects\\hadaciVec\\hadaciVec\\hadaciVec.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\baudyvo20\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+    "C:\\Users\\vojta\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
   "logs": []
 }

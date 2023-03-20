@@ -6,27 +6,29 @@ namespace hadaciVec.Entity;
 
 public class Question
 {
-	private int[] _numbers;
-	private List<int> _options;
-	private char _operator;
-	private int _result;
+	private int[] _numbers; // math problem numbers
+	private List<int> _options; // answere options
+	private char _operator; // math problem operator
+	private int _result; // correct result
 	private Random _random = new Random();
 	
 	public Question(int amoutOfNumbers = 2)
 	{
 		_numbers = GenerateNumbers(amoutOfNumbers);
 		_operator = GenerateOperator();
-		_options = GenerateOptions(_operator);
+		_options = GenerateOptions();
 	}
 
-	private List<int> GenerateOptions(char oper)
+	// generate answere options
+	// return Options
+	private List<int> GenerateOptions()
 	{
 		List<int> opt = new List<int>();
-		int parameterNumber = 0;
+		int parameterNumber = 0; // parameter number (randomizer)
 		
 		for (int i = 0; i < 3; i++)
 		{
-			switch (oper)
+			switch (_operator)
 			{
 				case '+':
 					opt.Add((_numbers[0] + parameterNumber) + _numbers[1]);
@@ -44,19 +46,23 @@ public class Question
 					throw new ArgumentException();
 			}
 
+			// generate random paramenter
 			do
 			{
 				parameterNumber = _random.Next(-20, 20);
 			} while (parameterNumber == 0);
 		}
 		
-		_result = opt[0];
+		_result = opt[0]; // set correct result
 		
-		Shuffle(opt);
+		Shuffle(opt); // shuffle options
 		
 		return opt;
 	}
 
+	// generate numbers
+	// lenght - [int]
+	//		  - amount of numbers
 	private int[] GenerateNumbers(int length)
 	{
 		int[] nums = new int[length];
@@ -69,6 +75,7 @@ public class Question
 		return nums;
 	}
 	
+	// generate Operator
 	private char GenerateOperator()
 	{
 		switch (_random.Next(1, 4))
@@ -86,37 +93,48 @@ public class Question
 		}
 	}
 	
+	// get equation
 	public string GetEquation()
 	{
 		return _numbers[0].ToString() + " " + _operator.ToString() + " " + _numbers[1].ToString();
 	}
 
+	// check answere
+	// answere - [int]
+	//		   - (button content)
 	public bool CheckAnswere(int answere)
 	{
 		return answere == _result ? true : false;
 	}
 	
-	public void Shuffle<T>(List<T> list)
+	// shuffle list
+	private void Shuffle<T>(List<T> list)
 	{  
 		int n = list.Count;  
-		while (n > 1) {  
+		while (n > 1) 
+		{  
 			n--;  
 			int k = _random.Next(n + 1);  
 			(list[k], list[n]) = (list[n], list[k]);
 		}
 	}
 	
-	// getters 
+	// GETTERS 
 
+	// get options
 	public List<int> GetOptions()
 	{
 		return _options;
 	}
 
-	public string GetStringJsonData()
+	// get String Json Data
+	// score - [int]
+	//		 - (level score)
+	public string GetStringJsonData(int score)
 	{
-		Dictionary<string, object> data = new Dictionary<string, dynamic>();
+		Dictionary<string, object> data = new Dictionary<string, object>();
 
+		data.Add("score", score);
 		data.Add("numbers", _numbers);
 		data.Add("options", _options);
 		data.Add("operator", _operator);
@@ -125,13 +143,14 @@ public class Question
 		return JsonConvert.SerializeObject(data);
 	}
 	
-	// setters
-
+	// Setters
+	
+	// set loaded data	
 	public void SetData(dynamic data)
 	{
-		_numbers = data["numbers"];
-		_options = data["options"];
-		_operator = data["operator"];
-		_result = data["result"];
+		_numbers = data["numbers"].ToObject<int[]>();
+		_options = data["options"].ToObject<List<int>>();
+		_operator = (char)data["operator"];
+		_result = (int)data["result"];
 	}
 }

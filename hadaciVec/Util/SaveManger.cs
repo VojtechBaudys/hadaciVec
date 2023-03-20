@@ -1,34 +1,42 @@
-﻿using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace hadaciVec.Util;
-using Newtonsoft.Json;
 
 public class SaveManger
 {
+	const string SavePath = "save.json";
+
 	public SaveManger()
 	{
 		// future :)
 	}
 
+	// Load data form {save.json} file
+	// return json Object
 	public dynamic LoadData()
 	{
 		FileExist();
-		string jsonString = File.ReadAllText("save.json");
+		string jsonString = File.ReadAllText(SavePath);
 		return JsonConvert.DeserializeObject(jsonString)!;
 	}
 
+	// Save stats to {save.json} file
+	// jsonString - [string]
 	public void SaveStats(string jsonString)
 	{
 		FileExist();
-		File.WriteAllText("save.json", jsonString);
+		File.WriteAllText(SavePath, jsonString);
 	}
 	
+	// Check {save.json} if exist
+	// false -> create new {save.json} file
 	private void FileExist()
 	{
 		try
 		{
-			JsonConvert.DeserializeObject(File.ReadAllText("save.json"));
+			JsonConvert.DeserializeObject(File.ReadAllText(SavePath));
 		}
 		catch
 		{
