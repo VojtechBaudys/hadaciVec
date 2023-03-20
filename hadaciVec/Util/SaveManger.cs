@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.IO;
 
 namespace hadaciVec.Util;
@@ -9,6 +9,13 @@ public class SaveManger
 	public SaveManger()
 	{
 		// future :)
+	}
+
+	public dynamic LoadData()
+	{
+		FileExist();
+		string jsonString = File.ReadAllText("save.json");
+		return JsonConvert.DeserializeObject(jsonString)!;
 	}
 
 	public void SaveStats(string jsonString)

@@ -13,5 +13,6 @@ namespace hadaciVec
 	/// </summary>
 	public partial class App : Application
 	{
+		
 	}
 }

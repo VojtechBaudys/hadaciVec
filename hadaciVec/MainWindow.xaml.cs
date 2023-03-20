@@ -22,6 +22,7 @@ namespace hadaciVec
 		{
 			InitializeComponent();
 			GenerateLevel();
+			_question.SetData(_saveManger.LoadData());
 		}
 
 		private void CheckOption(object sender, RoutedEventArgs e)
@@ -39,7 +40,7 @@ namespace hadaciVec
 			{
 				element.Background = Brushes.Crimson;
 				ScoreBox.Text = "WRONG ANSWERE";
-
+				
 				_score = 0;
 				GenerateLevel();
 			}

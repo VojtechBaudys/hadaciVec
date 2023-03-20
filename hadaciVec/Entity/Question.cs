@@ -106,7 +106,7 @@ public class Question
 		}
 	}
 	
-	// getters & setters
+	// getters 
 
 	public List<int> GetOptions()
 	{
@@ -123,5 +123,15 @@ public class Question
 		data.Add("result", _result);
 
 		return JsonConvert.SerializeObject(data);
+	}
+	
+	// setters
+
+	public void SetData(dynamic data)
+	{
+		_numbers = data["numbers"];
+		_options = data["options"];
+		_operator = data["operator"];
+		_result = data["result"];
 	}
 }
